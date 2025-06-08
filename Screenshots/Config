@@ -1,0 +1,47 @@
+Computer Configuration > Administrative Templates > Windows Components > Windows PowerShell
+
+
+**Settings Enabled:**
+- Module Logging
+- Script Block Logging
+- Script Execution Logging
+
+---
+
+## Simulated Suspicious PowerShell Command
+
+Executed the following command to simulate local user enumeration by an attacker:
+
+```powershell
+Get-LocalUser | Select-Object Name, Enabled
+
+This command lists all local user accounts and their enabled status.
+  Detection in Event Viewer
+
+    Opened Event Viewer (Win + R → eventvwr.msc)
+
+    Navigated to:
+
+Applications and Services Logs → Microsoft → Windows → PowerShell → Operational
+
+    Filtered logs for:
+
+        Event ID: 4104 (indicates PowerShell script block logging)
+
+Located the entry containing the suspicious PowerShell command.
+
+
+Screenshot Evidence
+
+    Screenshot showing detection of the PowerShell event (Event ID 4104) is included.
+
+
+Learning Outcome
+
+    Learned how to configure Windows to log detailed PowerShell activity.
+
+    Simulated post-exploitation behavior using native commands.
+
+    Detected and confirmed activity via Event Viewer.
+
+    Gained insight into blue team practices for threat detection.
